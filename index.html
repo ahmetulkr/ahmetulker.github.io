@@ -129,19 +129,25 @@
       <li>
       <a href="#" class="nav-link active">
         <i class="bi bi-house-door-fill me-2"></i>
-        To Do List
+        Home
       </a>
-       
+      <a href="#" class="nav-link active">
+        <i class="bi bi-house-door-fill me-2"></i>
+        About
+      </a>
+      <a href="#" class="nav-link active">
+        <i class="bi bi-house-door-fill me-2"></i>
+        Projects
+      </a>
+        <a href="#" class="nav-link active">
+            <i class="bi bi-house-door-fill me-2"></i>
+            Contact
       </li>   
     </ul></div>
   
     <!-- Main Content -->
     <div class="flex-grow-1 p-4">
-    <h1>Yapılacaklar Listesi</h1>
-    <div class="mb-3">
-      <input type="text" id="gorevInput" class="form-control" placeholder="Yeni bir görev ekle">
-      <button id="gorevEkleBtn" class="btn buttoncolor mt-2">Görev Ekle</button>
-    </div>
+  <h1>Bu arada ceylanı çok seviyorum</h1>
     <ul id="gorevListesi" class="list-group">
       <!-- Görevler burada görünecek -->
     </ul>
@@ -149,135 +155,6 @@
   </div>
   
   <script>
-    // Görevleri localStorage'a kaydet
-    function saveTasks() {
-    const tasks = [];
-    document.querySelectorAll('#gorevListesi li').forEach(item => {
-    tasks.push(item.firstChild.textContent.trim());
-    });
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-    
-    // localStorage'dan görevleri yükle
-    function loadTasks() {
-    const gorevListesi = document.getElementById('gorevListesi');
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    gorevListesi.innerHTML = ''; // Clear existing list
-    tasks.forEach(task => {
-    const gorevItem = document.createElement('li');
-    gorevItem.className = 'list-group-item d-flex justify-content-between align-items-center';
-    const taskText = document.createElement('span');
-    taskText.textContent = task;
-    gorevItem.appendChild(taskText);
-    
-    const dropdownEdit = document.createElement('div');
-    dropdownEdit.className = 'btn-group';
-
-    const dropdownButton = document.createElement('button');
-    dropdownButton.className = 'btn btn-warning btn-sm dropdown-toggle';
-    dropdownButton.setAttribute('data-bs-toggle', 'dropdown');
-    dropdownButton.innerHTML = '<i class="bi bi-three-dots"></i>';
-
-    const dropdownMenu = document.createElement('ul');
-    dropdownMenu.className = 'dropdown-menu';
-
-    const editItem = document.createElement('li');
-    const editButton = document.createElement('button');
-    editButton.className = 'dropdown-item';
-    editButton.textContent = "Düzenle";
-    editButton.addEventListener('click', function() {
-      const newTask = prompt('Görevi düzenleyin:', gorevItem.textContent.trim());
-      if (newTask !== null && newTask.trim() !== '') {
-      gorevItem.childNodes[0].textContent = newTask.trim();
-      saveTasks();
-      }
-    });
-    editItem.appendChild(editButton);
-
-    const deleteItem = document.createElement('li');
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'dropdown-item';
-    deleteButton.textContent = "Sil";
-    deleteButton.addEventListener('click', function() {
-      gorevListesi.removeChild(gorevItem);
-      saveTasks();
-    });
-    deleteItem.appendChild(deleteButton);
-
-    dropdownMenu.appendChild(editItem);
-    dropdownMenu.appendChild(deleteItem);
-
-    dropdownEdit.appendChild(dropdownButton);
-    dropdownEdit.appendChild(dropdownMenu);
-
-    gorevItem.appendChild(dropdownEdit);
-    gorevListesi.appendChild(gorevItem);
-    });
-    }
-    
-    document.getElementById('gorevEkleBtn').addEventListener('click', function() {
-    const gorevInput = document.getElementById('gorevInput');
-    const gorevMetni = gorevInput.value.trim();
-    
-    if (gorevMetni !== '') {
-    const gorevListesi = document.getElementById('gorevListesi');
-    const gorevItem = document.createElement('li');
-    gorevItem.className = 'list-group-item d-flex justify-content-between align-items-center';
-    const taskText = document.createElement('span');
-    taskText.textContent = gorevMetni;
-    gorevItem.appendChild(taskText);
-    
-    const dropdownEdit = document.createElement('div');
-    dropdownEdit.className = 'btn-group';
-
-    const dropdownButton = document.createElement('button');
-    dropdownButton.className = 'btn btn-warning btn-sm dropdown-toggle';
-    dropdownButton.setAttribute('data-bs-toggle', 'dropdown');
-    dropdownButton.innerHTML = '<i class="bi bi-three-dots"></i>';
-
-    const dropdownMenu = document.createElement('ul');
-    dropdownMenu.className = 'dropdown-menu';
-
-    const editItem = document.createElement('li');
-    const editButton = document.createElement('button');
-    editButton.className = 'dropdown-item';
-    editButton.textContent = "Düzenle";
-    editButton.addEventListener('click', function() {
-      const newTask = prompt('Görevi düzenleyin:', gorevItem.textContent.trim());
-      if (newTask !== null && newTask.trim() !== '') {
-      gorevItem.childNodes[0].textContent = newTask.trim();
-      saveTasks();
-      }
-    });
-    editItem.appendChild(editButton);
-
-    const deleteItem = document.createElement('li');
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'dropdown-item';
-    deleteButton.textContent = "Sil";
-    deleteButton.addEventListener('click', function() {
-      gorevListesi.removeChild(gorevItem);
-      saveTasks();
-    });
-    deleteItem.appendChild(deleteButton);
-
-    dropdownMenu.appendChild(editItem);
-    dropdownMenu.appendChild(deleteItem);
-
-    dropdownEdit.appendChild(dropdownButton);
-    dropdownEdit.appendChild(dropdownMenu);
-
-    gorevItem.appendChild(dropdownEdit);
-    gorevListesi.appendChild(gorevItem);
-    
-    gorevInput.value = '';
-    gorevInput.focus();
-    saveTasks();
-    }
-    });
-    
-    // Sayfa yüklendiğinde görevleri yükle
-    document.addEventListener('DOMContentLoaded', loadTasks);
     </script>
     
   
